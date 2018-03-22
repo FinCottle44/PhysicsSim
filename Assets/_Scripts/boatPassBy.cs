@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class boatPass : MonoBehaviour {
+public class boatPassBy : MonoBehaviour {
     public Rigidbody rb;
 
     Vector3 lastPos;
@@ -28,7 +28,7 @@ public class boatPass : MonoBehaviour {
     {
         if (rb.transform.position.z <= -175)
         {
-            rb.transform.position = new Vector3(-115, 15.27f, 100);
+            rb.transform.position = new Vector3(-200, 15.27f, 100);
             rb.velocity = new Vector3(0,0,0);
         }
         else
