@@ -33,14 +33,14 @@ public class VehicleSelect : MonoBehaviour
         if (ddVehOption == "Jeep")
         {
             vehicle = jeep;
-            Debug.Log(vehicle);
+            //Debug.Log(vehicle);
             jeep.SetActive(true);
             truck.SetActive(false);
         }
         else if (ddVehOption == "Monster Truck")
         {
             vehicle = truck;
-            Debug.Log(vehicle);
+            //Debug.Log(vehicle);
             truck.SetActive(true);
             jeep.SetActive(false);
         }

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Truck
   - Jeep
+  - StopCollide
   layers:
   - Default
   - TransparentFX

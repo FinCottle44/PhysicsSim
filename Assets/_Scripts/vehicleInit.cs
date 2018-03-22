@@ -39,15 +39,15 @@ public class vehicleInit : MonoBehaviour {
     {
         if (vehicleSelect.vehicle == vehicleSelect.jeep)
         {
-            Debug.Log("dab");
+            //Debug.Log("dab");
             rb = vehicleSelect.jeep.GetComponent<Rigidbody>();
-            Debug.Log(rb.mass);
+            //Debug.Log(rb.mass);
         }
         else if (vehicleSelect.vehicle == vehicleSelect.truck)
         {
-            Debug.Log("dabtruck");
+            //Debug.Log("dabtruck");
             rb = vehicleSelect.truck.GetComponent<Rigidbody>();
-            Debug.Log(rb.mass);
+            //Debug.Log(rb.mass);
         }
         //Debug.Log(vehicleSelect.vehicle);
     }
@@ -56,12 +56,11 @@ public class vehicleInit : MonoBehaviour {
     {
         float vel = Vector3.Magnitude(transform.position - lastPos);
         lastPos = transform.position;
-        Debug.Log(vel);
+        //Debug.Log(vel);
     }
 
     public void vehMove()
     {
-
         if (vehicleSelect.vehicle == vehicleSelect.jeep)
         {
             float force = mass * (velocityRequired / Time.fixedDeltaTime);
@@ -147,4 +146,11 @@ public class vehicleInit : MonoBehaviour {
             rb.angularVelocity = Vector3.zero;
         }
     }
+
+    public void OnCollisionEnter(Collision col)
+    {
+        StopPress();
+        Debug.Log("stopped");
+    }
+
 }
