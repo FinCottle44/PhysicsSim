@@ -8,6 +8,8 @@ public class camInit : MonoBehaviour
     public float dragSpeed = 2;
     private Vector3 dragOrigin;
     public Dropdown ddCam;
+    public Toggle togMoveCam;
+    
     string ddCamOption;
     int ddCamValue;
 
@@ -26,12 +28,15 @@ public class camInit : MonoBehaviour
 
     void Pan()
     {
-        if (Input.GetMouseButton(0))
+        if (togMoveCam.isOn == true)
         {
-            transform.Rotate(new Vector3(Input.GetAxis("Mouse Y") * speed, -Input.GetAxis("Mouse X") * speed, 0));
-            X = transform.rotation.eulerAngles.x;
-            Y = transform.rotation.eulerAngles.y;
-            transform.rotation = Quaternion.Euler(X, Y, 0);
+            if (Input.GetMouseButton(0))
+            {
+                transform.Rotate(new Vector3(Input.GetAxis("Mouse Y") * speed, -Input.GetAxis("Mouse X") * speed, 0));
+                X = transform.rotation.eulerAngles.x;
+                Y = transform.rotation.eulerAngles.y;
+                transform.rotation = Quaternion.Euler(X, Y, 0);
+            }
         }
     }
 
@@ -64,4 +69,7 @@ public class camInit : MonoBehaviour
             cam2.gameObject.SetActive(true);
         }
     }
+
+
+
 }
