@@ -25,6 +25,12 @@ public class vehicleInit : MonoBehaviour {
         rb = vehicleSelect.vehicle.GetComponent<Rigidbody>();
         lastPos = transform.position;
         StopPress();
+
+        Rigidbody[] rbs = vehicleSelect.vehicle.GetComponentsInChildren<Rigidbody>();
+        foreach (Rigidbody rb in rbs)
+        {
+            rb.isKinematic = true;
+        }
     }
 
     void FixedUpdate() {
@@ -85,6 +91,15 @@ public class vehicleInit : MonoBehaviour {
         {
             vehMove();
         }
+        else
+        {
+            Rigidbody[] rbs = vehicleSelect.vehicle.GetComponentsInChildren<Rigidbody>();
+            foreach (Rigidbody rb in rbs)
+            {
+                rb.velocity = new Vector3(0, 0, 0);
+                rb.angularVelocity = new Vector3(0, 0, 0);
+            }
+        }
     }
 
     public void StartPress()
@@ -107,7 +122,8 @@ public class vehicleInit : MonoBehaviour {
         Rigidbody[] rbs = vehicleSelect.vehicle.GetComponentsInChildren<Rigidbody>();
         foreach (Rigidbody rb in rbs)
         {
-            rb.isKinematic = true;
+            rb.velocity = new Vector3(0, 0, 0);
+            rb.angularVelocity = new Vector3(0, 0, 0);
         }
     }
 
@@ -135,15 +151,13 @@ public class vehicleInit : MonoBehaviour {
     {
         if (vehicleSelect.vehicle.tag == "Jeep")
         {
-            vehicleSelect.vehicle.transform.position = new Vector3(0.0311477f, 22.51f, -26.58f);
-            rb.velocity = Vector3.zero;
-            rb.angularVelocity = Vector3.zero;
+            vehicleSelect.vehicle.transform.position = new Vector3(0.047593f, 21.37353f, -21.87712f);
+            StopPress();
         }
         else if (vehicleSelect.vehicle.tag == "Truck")
         {
             vehicleSelect.vehicle.transform.position = new Vector3(-0.0006133558f, 24.21959f, 23.79094f);
-            rb.velocity = Vector3.zero;
-            rb.angularVelocity = Vector3.zero;
+            StopPress();
         }
     }
 
