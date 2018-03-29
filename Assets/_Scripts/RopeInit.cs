@@ -12,6 +12,7 @@ public class RopeInit : MonoBehaviour {
     Rigidbody rb;
     HingeJoint hj;
     FixedJoint fj;
+    Collider col;
 
 
     // Use this for initialization
@@ -20,6 +21,7 @@ public class RopeInit : MonoBehaviour {
         hj = go.GetComponent<HingeJoint>();
         fj = go.GetComponent<FixedJoint>();
         rb = go.GetComponent<Rigidbody>();
+        col = go.GetComponent<Collider>();
         anchor = fj.connectedBody.gameObject;
 	}
 	
@@ -33,11 +35,12 @@ public class RopeInit : MonoBehaviour {
         Vector3 explosionPos = go.transform.position;
 
         Debug.Log("dab!, force: " + breakForce);
-        Debug.Log(goConnected);
+        Debug.Log(anchor);
         Destroy(hj);
 
         //rb.AddExplosionForce(power, explosionPos, radius, 300.0F);
         rb.transform.LookAt(anchor.transform.position);
-        rb.AddForce(Vector3.forward * 1000);
+        rb.AddRelativeForce(Vector3.forward * 2000);
+        col.enabled = true;
     }
 }

@@ -163,8 +163,8 @@ public class vehicleInit : MonoBehaviour {
 
     public void OnCollisionEnter(Collision col)
     {
-        StopPress();
-        Debug.Log("stopped");
+        //StopPress();
+        //Debug.Log("stopped");
     }
 
 }
