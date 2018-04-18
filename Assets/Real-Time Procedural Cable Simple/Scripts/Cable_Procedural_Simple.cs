@@ -20,11 +20,11 @@ public class Cable_Procedural_Simple : MonoBehaviour {
 	[SerializeField] float sagAmplitude = 1;
 
 	//How much wind will move the cable.
-	[SerializeField] float swayMultiplier = 1;
+	[SerializeField] public float swayMultiplier = 1;
 	[SerializeField] float swayXMultiplier = 1;
 	[SerializeField] float swayYMultiplier = .5f;
 	//How fast the cable will go back and forth per second.
-	[SerializeField] float swayFrequency = 1;
+	[SerializeField] public float swayFrequency = 1;
 
 
 	//These are used later for calculations

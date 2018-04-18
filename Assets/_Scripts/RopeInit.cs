@@ -13,6 +13,7 @@ public class RopeInit : MonoBehaviour {
     HingeJoint hj;
     FixedJoint fj;
     Collider col;
+	Cable_Procedural_Simple cabScript;
 
 
     // Use this for initialization
@@ -22,6 +23,7 @@ public class RopeInit : MonoBehaviour {
         fj = go.GetComponent<FixedJoint>();
         rb = go.GetComponent<Rigidbody>();
         col = go.GetComponent<Collider>();
+		cabScript = go.GetComponent<Cable_Procedural_Simple>();
         anchor = fj.connectedBody.gameObject;
 	}
 	
@@ -37,10 +39,12 @@ public class RopeInit : MonoBehaviour {
         Debug.Log("dab!, force: " + breakForce);
         Debug.Log(anchor);
         Destroy(hj);
-
+		rb.useGravity = false;
         //rb.AddExplosionForce(power, explosionPos, radius, 300.0F);
         rb.transform.LookAt(anchor.transform.position);
         rb.AddRelativeForce(Vector3.forward * 2000);
+		cabScript.swayMultiplier = 10;
+		rb.useGravity = true;
         col.enabled = true;
     }
 }
