@@ -17,7 +17,8 @@ public class camInit : MonoBehaviour
     private float X;
     private float Y;
 
-    public Camera cam1, cam2;
+	public Camera cam1;
+	public Camera cam2;
 
     void Update()
     {
