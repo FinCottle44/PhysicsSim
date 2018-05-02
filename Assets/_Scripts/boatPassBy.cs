@@ -90,7 +90,7 @@ public class boatPassBy : MonoBehaviour {
 //				Quaternion interpolatedRotation = Quaternion.Slerp(boatRotation, neededRotation, Time.deltaTime * rotationSpeed);
 //				rb.rotation = interpolatedRotation;
 				if (turn == null) {
-					StartCoroutine (Turn ());
+//					StartCoroutine (Turn ());
 				}
 			}
 		}
@@ -100,7 +100,7 @@ public class boatPassBy : MonoBehaviour {
 		Quaternion q = 	Quaternion.FromToRotation (transform.forward, passByFinish.transform.position);
 		while (transform.rotation != q) 
 		{
-			transform.rotation += Quaternion.Euler(q.eulerAngles * Time.deltaTime);
+//			transform.rotation += Quaternion.Euler(q.eulerAngles * Time.deltaTime);
 			yield return null;
 		}
 		turn = null;

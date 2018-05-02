@@ -2,9 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class LevelSelect : MonoBehaviour {
-    public int level;
+    //public int level;
+    //public GameObject canvasDefault;
+    public GameObject canvasDefault;
+    public GameObject canvasBD;
+
     Scene currentScene;
     string sceneName;
 
@@ -16,7 +21,8 @@ public class LevelSelect : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+		currentScene = SceneManager.GetActiveScene();
+		sceneName = currentScene.name;
 	}
 
     void OnGUI()
@@ -29,6 +35,8 @@ public class LevelSelect : MonoBehaviour {
             {
                 //The SceneManager loads your new Scene as a single Scene (not overlapping). This is Single mode.
                 SceneManager.LoadScene("Level02", LoadSceneMode.Single);
+                canvasBD.SetActive(false);
+                canvasDefault.SetActive(true);
             }
 
             //Whereas pressing this Button loads the Additive Scene.
@@ -36,6 +44,8 @@ public class LevelSelect : MonoBehaviour {
             {
                 //SceneManager loads your new Scene as an extra Scene (overlapping the other). This is Additive mode.
                 SceneManager.LoadScene("Level01", LoadSceneMode.Single);
+                canvasBD.SetActive(false);
+                canvasDefault.SetActive(true);
             }
 
 			//Whereas pressing this Button loads the Additive Scene.
@@ -43,14 +53,24 @@ public class LevelSelect : MonoBehaviour {
 			{
 				//SceneManager loads your new Scene as an extra Scene (overlapping the other). This is Additive mode.
 				SceneManager.LoadScene("Level03", LoadSceneMode.Single);
-			}
+                canvasBD.SetActive(false);
+                canvasDefault.SetActive(true);
+            }
 
 			if (GUI.Button(new Rect(Screen.width / 2 - 85, Screen.height / 2 + 100, 170, 40), "Level 4"))
 			{
 				//SceneManager loads your new Scene as an extra Scene (overlapping the other). This is Additive mode.
 				SceneManager.LoadScene("Level04", LoadSceneMode.Single);
-			}
+                canvasBD.SetActive(false);
+                canvasDefault.SetActive(true);
+            }
         }
+        if (sceneName == "BridgeDesign")
+        {
+           canvasBD.SetActive(true);
+           canvasDefault.SetActive(false);
+        }
+
     }
 
     public void MainMenu()

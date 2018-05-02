@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class vehicleInit : MonoBehaviour {
     public VehicleSelect vehicleSelect;
@@ -13,6 +14,9 @@ public class vehicleInit : MonoBehaviour {
     float thrustMultiplier;
     float thrust;
     float velocityRequired = 0.4f;
+
+    Scene currentScene;
+    string sceneName;
 
     public InputField inputThrust;
     public InputField inputMass;
@@ -31,6 +35,9 @@ public class vehicleInit : MonoBehaviour {
         {
             rb.isKinematic = true;
         }
+        currentScene = SceneManager.GetActiveScene();
+        sceneName = currentScene.name;
+
     }
 
     void FixedUpdate() {
@@ -119,11 +126,23 @@ public class vehicleInit : MonoBehaviour {
         move = false;
         //rb.isKinematic = true;
 
+        
+
         Rigidbody[] rbs = vehicleSelect.vehicle.GetComponentsInChildren<Rigidbody>();
         foreach (Rigidbody rb in rbs)
         {
             rb.velocity = new Vector3(0, 0, 0);
             rb.angularVelocity = new Vector3(0, 0, 0);
+
+        }
+        if (sceneName == "BridgeDesign")
+        {
+            foreach (Rigidbody rb in rbs)
+            {
+                rb.velocity = new Vector3(0, 0, 0);
+                rb.angularVelocity = new Vector3(0, 0, 0);
+                rb.isKinematic = true;
+            }
         }
     }
 
@@ -166,5 +185,4 @@ public class vehicleInit : MonoBehaviour {
         //StopPress();
         //Debug.Log("stopped");
     }
-
 }
