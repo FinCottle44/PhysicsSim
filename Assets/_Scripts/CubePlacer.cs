@@ -2,11 +2,21 @@
 
 public class CubePlacer : MonoBehaviour
 {
+    public Vector3 startPos;
+    public Vector3 endPos;
+    public int clickNum;
+
     private Grid grid;
+    private GameObject midCube;
 
     private void Awake()
     {
         grid = FindObjectOfType<Grid>();
+    }
+
+    private void Start()
+    {
+        clickNum = 1;
     }
 
     private void Update()
@@ -15,7 +25,6 @@ public class CubePlacer : MonoBehaviour
         {
             RaycastHit hitInfo;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            Debug.Log(Input.mousePosition);
 
             if (Physics.Raycast(ray, out hitInfo))
             {
@@ -27,8 +36,29 @@ public class CubePlacer : MonoBehaviour
     private void PlaceCubeNear(Vector3 clickPoint)
     {
         var finalPosition = grid.GetNearestPointOnGrid(clickPoint);
-        GameObject.CreatePrimitive(PrimitiveType.Cube).transform.position = finalPosition;
+        if (clickNum == 1)
+        {
+            startPos = finalPosition;
+            GameObject.CreatePrimitive(PrimitiveType.Cube).transform.position = finalPosition;
+            clickNum = 2;
+        }
+        else if (clickNum == 2)
+        {
+            endPos = finalPosition;
+            GameObject.CreatePrimitive(PrimitiveType.Cube).transform.position = finalPosition;
+            Vector3 mid = startPos + (endPos - startPos) / 2;
+            midCube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            midCube.transform.position = mid;
+            //midCube.transform.localScale = endPos - startPos;
+            float xScale = Mathf.Abs(endPos.x - startPos.x);
 
-        //GameObject.CreatePrimitive(PrimitiveType.Sphere).transform.position = nearPoint;
+            if (xScale == 0)
+            {
+                xScale = 1;
+            }
+            midCube.transform.localScale = new Vector3(xScale, Mathf.Abs(endPos.y - startPos.y), Mathf.Abs(endPos.z - startPos.z));
+            clickNum = 1;
+        }
+
     }
 }
