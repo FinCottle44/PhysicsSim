@@ -16,7 +16,7 @@ public class camInit : MonoBehaviour
     int ddCamValue;
 	Scene currentScene;
 	string sceneName;
-	bool editing;
+	public bool editing;
 
     public float speed = 1f;
     private float X;

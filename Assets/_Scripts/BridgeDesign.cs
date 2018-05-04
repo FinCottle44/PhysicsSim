@@ -7,6 +7,7 @@ public class BridgeDesign : MonoBehaviour {
     public Texture crosshair;
     public Camera cam;
     public Vector2 screenPos;
+    public camInit camScript;
 
     bool isClicking;
 
@@ -53,5 +54,10 @@ public class BridgeDesign : MonoBehaviour {
             GUI.DrawTexture(new Rect(Input.mousePosition.x - 25, Screen.height - Input.mousePosition.y - 25, 50, 50), crosshair);
             //click = false;
         }
+    }
+
+    public void Go()
+    {
+        camScript.editing = false;
     }
 }
