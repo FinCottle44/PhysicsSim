@@ -9,6 +9,7 @@ public class CubePlacer : MonoBehaviour
     private Grid grid;
     private GameObject midCube;
     private GameObject firstCube;
+    private GameObject secondCube;
 
     private void Awake()
     {
@@ -41,30 +42,34 @@ public class CubePlacer : MonoBehaviour
         {
             startPos = finalPosition;
             //GameObject.CreatePrimitive(PrimitiveType.Cube).transform.position = finalPosition;
-            firstCube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            firstCube.transform.position = new Vector3(-3, finalPosition.y, finalPosition.z);
+            secondCube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            secondCube.transform.position = new Vector3(-3, finalPosition.y, finalPosition.z);
+            secondCube.GetComponent<Renderer>().material.color = Color.blue;
             clickNum = 2;
         }
         else if (clickNum == 2)
         {
             endPos = finalPosition;
             //GameObject.CreatePrimitive(PrimitiveType.Cube).transform.position = finalPosition;
-            firstCube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            firstCube.transform.position = new Vector3(-3, finalPosition.y, finalPosition.z);
+            secondCube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            secondCube.transform.position = new Vector3(-3, finalPosition.y, finalPosition.z);
+            secondCube.GetComponent<Renderer>().material.color = Color.red;
 
             Vector3 mid = startPos + (endPos - startPos) / 2;
             midCube = GameObject.CreatePrimitive(PrimitiveType.Cube);
             midCube.transform.position = new Vector3(-3, mid.y, mid.z);
-            float changeY = Mathf.Abs(endPos.y - startPos.y);
-            float changeZ = Mathf.Abs(endPos.z - startPos.z);
+            //float changeY = Mathf.Abs(endPos.y - startPos.y);
+            //float changeZ = Mathf.Abs(endPos.z - startPos.z);
+            float changeY = endPos.y - startPos.y;
+            float changeZ = endPos.z - startPos.z;
             float difYZ = changeY / changeZ;
             float angle = Mathf.Atan(difYZ);
             double result = RadianToDegree(angle);
 
             Debug.Log("y: " + changeY + " z: " + changeZ);
-            Debug.Log(difYZ);
-            Debug.Log(angle);
-            Debug.Log((float)result);
+            Debug.Log("difference is: " + difYZ);
+            Debug.Log("angle in radians " + angle);
+            Debug.Log("angle in degrees " + (float)result);
 
             float xScale = Mathf.Abs(endPos.x - startPos.x);
             float yScale = Mathf.Abs(endPos.y - startPos.y);
@@ -80,15 +85,17 @@ public class CubePlacer : MonoBehaviour
             }
             if (zScale == 0)
             {
-                zScale = 1;
+                zScale = yScale;
             }
-            midCube.transform.localScale = new Vector3(xScale, yScale, zScale);
-            midCube.transform.Rotate(new Vector3((float)result, 0, 0));
-            Debug.Log(midCube.transform.rotation);
+
+            midCube.transform.localScale = new Vector3(0.5f, 0.5f, zScale);
+            midCube.transform.Rotate(new Vector3(-(float)result, 0, 0));
 
             clickNum = 1;
 
         }
+        //Destroy(firstCube);
+        //Destroy(secondCube);
     }
 
     double RadianToDegree(double angle)
