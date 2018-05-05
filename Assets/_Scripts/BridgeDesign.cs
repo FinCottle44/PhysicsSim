@@ -10,6 +10,7 @@ public class BridgeDesign : MonoBehaviour {
     public camInit camScript;
     public GameObject canvasBD;
     public GameObject canvasDefault;
+    public Grid gridScript;
 
     bool isClicking;
 
@@ -61,7 +62,7 @@ public class BridgeDesign : MonoBehaviour {
     public void Go()
     {
         camScript.editing = false;
-        Debug.Log("Go!");
+        gridScript.DestroyGrid();
         canvasBD.SetActive(false);
         canvasDefault.SetActive(true);
     }
@@ -80,6 +81,5 @@ public class BridgeDesign : MonoBehaviour {
     {
         camScript.editing = true;
         camScript.SelectCam();
-        //Debug.Log("back to edit we go");
     }
 }

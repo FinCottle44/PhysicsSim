@@ -71,14 +71,15 @@ public class camInit : MonoBehaviour
     {
         ddCamValue = ddCam.value;
         ddCamOption = ddCam.options[ddCamValue].text;
+        
 		if (sceneName == "BridgeDesign" && editing == true) {
 			cam1.enabled = false;
 			cam2.enabled = false;
-			cam2d.enabled = true;
-			cam2d.gameObject.SetActive (true);
+            cam2d.enabled = true;
         }
         else {
-			if (ddCamOption == "Camera 1") {
+			if (ddCamOption == "Camera 1")
+            {
 				cam1.enabled = true;
 				cam2.enabled = false;
                 if (sceneName == "BridgeDesign")
@@ -86,7 +87,9 @@ public class camInit : MonoBehaviour
                     cam2d.enabled = false;
                 }
 				cam1.gameObject.SetActive (true);
-			} if (ddCamOption == "Camera 2") {
+			}
+            if (ddCamOption == "Camera 2")
+            {
 				cam1.enabled = false;
 				cam2.enabled = true;
                 if (sceneName == "BridgeDesign")
@@ -96,6 +99,5 @@ public class camInit : MonoBehaviour
                 cam2.gameObject.SetActive (true);
 			}
 		}
-
     }
 }

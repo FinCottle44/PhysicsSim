@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic; // generic collection types
+using System.Linq; // Linq functions
 
 public class CubePlacer : MonoBehaviour
 {
@@ -9,6 +11,7 @@ public class CubePlacer : MonoBehaviour
     public Dropdown materialDrop;
     public CustomStructureConfig structureConf;
     public camInit camScript;
+    public List<Vector3> history;
 
     private Grid grid;
     private GameObject poleBack;
@@ -56,6 +59,11 @@ public class CubePlacer : MonoBehaviour
             if (clickNum == 1)
             {
                 startPos = finalPosition;
+                if (history.Count > 0)
+                {
+                    HistoryCheck(startPos);
+                }
+                history.Add(startPos);
                 //GameObject.CreatePrimitive(PrimitiveType.Cylinder).transform.position = finalPosition;
                 cubeClickBack = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
                 cubeClickBack.transform.position = new Vector3(-2.7f, finalPosition.y, finalPosition.z);
@@ -75,6 +83,11 @@ public class CubePlacer : MonoBehaviour
             else if (clickNum == 2)
             {
                 endPos = finalPosition;
+                if (history.Count > 0)
+                {
+                    HistoryCheck(endPos);
+                }
+                history.Add(endPos);
                 //GameObject.CreatePrimitive(PrimitiveType.Cylinder).transform.position = finalPosition;
                 cubeClickBack = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
                 cubeClickBack.transform.position = new Vector3(-2.7f, finalPosition.y, finalPosition.z);
@@ -150,8 +163,6 @@ public class CubePlacer : MonoBehaviour
                     //Rigidbody rb = roadCube.GetComponent<Rigidbody>();
                     //rb.useGravity = false;
                 }
-
-
                 clickNum = 1;
             }
             //Destroy(firstCube);
@@ -167,5 +178,45 @@ public class CubePlacer : MonoBehaviour
     void UICheck()
     {
         OverUI = UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject();
+    }
+
+    void HistoryCheck(Vector3 position) //used to add horizontal supports and joint positions   
+    {
+        for (int i = 0; i < history.Count; i++)
+        {
+            Vector3 checkPos = history[i];
+            if (checkPos == position)
+            {
+                //Debug.Log("suppot dab");
+                GameObject pole = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+                pole.transform.Rotate(0, 0, 90);
+                pole.transform.localScale = new Vector3(0.5f, 2.75f, 0.5f);
+                pole.transform.position = new Vector3(0, position.y, position.z); //has to be 0 on x axis
+                pole.tag = "Structure";
+            }
+        }
+    }
+
+    public void Undo()
+    {
+        Vector3 latestVector = history[history.Count - 1];
+        Debug.Log(latestVector);
+        GameObject[] structure = GameObject.FindGameObjectsWithTag("Structure");
+        for (int i = 0; i < structure.Length; i++)
+        {
+            GameObject block = structure[i];
+            if (block.transform.position.y == latestVector.y && block.transform.position.z == latestVector.z)
+            {
+                Destroy(block);
+            }
+        }
+        if (clickNum == 1)
+        {
+            clickNum = 2;
+        }
+        else if (clickNum == 2)
+        {
+            clickNum = 1;
+        }
     }
 }
