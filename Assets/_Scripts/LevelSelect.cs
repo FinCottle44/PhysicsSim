@@ -35,8 +35,6 @@ public class LevelSelect : MonoBehaviour {
             {
                 //The SceneManager loads your new Scene as a single Scene (not overlapping). This is Single mode.
                 SceneManager.LoadScene("Level02", LoadSceneMode.Single);
-                canvasBD.SetActive(false);
-                canvasDefault.SetActive(true);
             }
 
             //Whereas pressing this Button loads the Additive Scene.
@@ -44,8 +42,6 @@ public class LevelSelect : MonoBehaviour {
             {
                 //SceneManager loads your new Scene as an extra Scene (overlapping the other). This is Additive mode.
                 SceneManager.LoadScene("Level01", LoadSceneMode.Single);
-                canvasBD.SetActive(false);
-                canvasDefault.SetActive(true);
             }
 
 			//Whereas pressing this Button loads the Additive Scene.
@@ -53,23 +49,25 @@ public class LevelSelect : MonoBehaviour {
 			{
 				//SceneManager loads your new Scene as an extra Scene (overlapping the other). This is Additive mode.
 				SceneManager.LoadScene("Level03", LoadSceneMode.Single);
-                canvasBD.SetActive(false);
-                canvasDefault.SetActive(true);
             }
 
 			if (GUI.Button(new Rect(Screen.width / 2 - 85, Screen.height / 2 + 100, 170, 40), "Level 4"))
 			{
 				//SceneManager loads your new Scene as an extra Scene (overlapping the other). This is Additive mode.
 				SceneManager.LoadScene("Level04", LoadSceneMode.Single);
-                canvasBD.SetActive(false);
-                canvasDefault.SetActive(true);
+            }
+
+            if (GUI.Button(new Rect(Screen.width / 2 - 85, Screen.height / 2 + 150, 170, 40), "Make your own!"))
+            {
+                //SceneManager loads your new Scene as an extra Scene (overlapping the other). This is Additive mode.
+                SceneManager.LoadScene("BridgeDesign", LoadSceneMode.Single);
             }
         }
-        if (sceneName == "BridgeDesign")
-        {
-           canvasBD.SetActive(true);
-           canvasDefault.SetActive(false);
-        }
+        //if (sceneName == "BridgeDesign")
+        //{
+        //   canvasBD.SetActive(true);
+        //   canvasDefault.SetActive(false);
+        //}
 
     }
 

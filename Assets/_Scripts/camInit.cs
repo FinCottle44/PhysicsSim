@@ -39,7 +39,7 @@ public class camInit : MonoBehaviour
 		currentScene = SceneManager.GetActiveScene();
 		sceneName = currentScene.name;
 		SelectCam ();
-		editing = true;
+		//editing = true;
 	}
 
     void Pan()
@@ -76,17 +76,24 @@ public class camInit : MonoBehaviour
 			cam2.enabled = false;
 			cam2d.enabled = true;
 			cam2d.gameObject.SetActive (true);
-		} else {
+        }
+        else {
 			if (ddCamOption == "Camera 1") {
 				cam1.enabled = true;
 				cam2.enabled = false;
-				//cam2d.enabled = false;
+                if (sceneName == "BridgeDesign")
+                {
+                    cam2d.enabled = false;
+                }
 				cam1.gameObject.SetActive (true);
 			} if (ddCamOption == "Camera 2") {
 				cam1.enabled = false;
 				cam2.enabled = true;
-				//cam2d.enabled = false;
-				cam2.gameObject.SetActive (true);
+                if (sceneName == "BridgeDesign")
+                {
+                    cam2d.enabled = false;
+                }
+                cam2.gameObject.SetActive (true);
 			}
 		}
 

@@ -8,6 +8,8 @@ public class BridgeDesign : MonoBehaviour {
     public Camera cam;
     public Vector2 screenPos;
     public camInit camScript;
+    public GameObject canvasBD;
+    public GameObject canvasDefault;
 
     bool isClicking;
 
@@ -19,7 +21,7 @@ public class BridgeDesign : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Draw ();
+        Draw ();
 	}
 
     void Draw()
@@ -59,5 +61,25 @@ public class BridgeDesign : MonoBehaviour {
     public void Go()
     {
         camScript.editing = false;
+        Debug.Log("Go!");
+        canvasBD.SetActive(false);
+        canvasDefault.SetActive(true);
+    }
+
+    public void Clear()
+    {
+        GameObject[] structure = GameObject.FindGameObjectsWithTag("Structure");
+        for (int i = 0; i < structure.Length; i++)
+        {
+            GameObject block = structure[i];
+            Destroy(block);
+        }
+    }
+
+    public void Edit()
+    {
+        camScript.editing = true;
+        camScript.SelectCam();
+        //Debug.Log("back to edit we go");
     }
 }

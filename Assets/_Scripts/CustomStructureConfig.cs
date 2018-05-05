@@ -19,7 +19,8 @@ public class CustomStructureConfig : MonoBehaviour {
     {
         if (collision.collider.tag == "Structure")
         {
-            col.enabled = false;
+            Collider col2 = collision.gameObject.GetComponent<Collider>();
+                Physics.IgnoreCollision(col2, col);
         }
     }
 }
