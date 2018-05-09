@@ -4,43 +4,27 @@ using System.Collections;
 [RequireComponent(typeof(LineRenderer))]
 public class RadiusDraw : MonoBehaviour
 {
-    [Range(0, 50)]
-    public int segments = 50;
-    [Range(0, 5)]
-    public float xradius = 5;
-    [Range(0, 5)]
-    public float yradius = 5;
+    [Range(0, 40)]
+    public int segments = 40;
+    [Range(0, 6)]
+    public float xradius = 6;
+    [Range(0, 6)]
+    public float yradius = 6;
     LineRenderer line;
+
+    public GameObject empty;
+    public CubePlacer cubeplacer;
+    public Grid grid;
 
     bool clicked;
 
-    void Start()
-    {
-        line = gameObject.GetComponent<LineRenderer>();
-
-        line.SetVertexCount(segments + 1);
-        line.useWorldSpace = false;
-        line.startWidth = 0.1f;
-        clicked = false;
-    }
-
-    private void Update()
-    {
-
-    }
-
-    void OnMouseDown()
-    {
-        clicked = !clicked;
-    }
-
-    void CreatePoints()
+    public void CreatePoints()
     {
         float x;
         float y;
         float z;
 
-        float angle = 20f;
+        float angle = 30f;
 
         for (int i = 0; i < (segments + 1); i++)
         {
@@ -51,5 +35,34 @@ public class RadiusDraw : MonoBehaviour
 
             angle += (360f / segments);
         }
+    }
+
+    public void CreateEmpty()
+    {
+        empty = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+        empty.GetComponent<Renderer>().enabled = false;
+        empty.GetComponent<Collider>().enabled = false;
+        empty.name = "Empty (RadiusDraw)";
+        empty.tag = "empty";
+        if (cubeplacer.clickNum == 1)
+        {
+            empty.transform.position = grid.GetNearestPointOnGrid(cubeplacer.startPos);
+        }
+        else if (cubeplacer.clickNum == 2)
+        {
+            GameObject[] empties = GameObject.FindGameObjectsWithTag("empty");
+            for (int i = 0; i < empties.Length; i++)
+            {
+                Destroy(empties[i]);
+            }
+        }
+        
+        line = empty.AddComponent<LineRenderer>();
+        line.SetVertexCount(segments + 1);
+        line.useWorldSpace = false;
+        line.material = new Material(Shader.Find("Particles/Additive"));
+        line.startWidth = 0.1f;
+        line.startColor = Color.white;
+        line.endColor = Color.white;
     }
 }

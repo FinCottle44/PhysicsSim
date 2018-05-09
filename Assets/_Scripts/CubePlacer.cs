@@ -12,6 +12,7 @@ public class CubePlacer : MonoBehaviour
     public camInit camScript;
     public List<Vector3> history;
     public float FJBreakForce;
+    public RadiusDraw RadiusDraw;
 
     private Grid grid;
     private GameObject poleBack;
@@ -61,7 +62,7 @@ public class CubePlacer : MonoBehaviour
         //        PlaceCubeNear(hitInfo.point);
         //    }
         //}
-        //KinematicCheck();
+        KinematicCheck();
     }
 
     private void PlaceCubeNear(Vector3 clickPoint)
@@ -72,6 +73,8 @@ public class CubePlacer : MonoBehaviour
             if (clickNum == 1)
             {
                 startPos = finalPosition;
+                RadiusDraw.CreateEmpty();
+                RadiusDraw.CreatePoints();
                 if (history.Count > 0)
                 {
                     JointCheck(startPos);
@@ -103,6 +106,8 @@ public class CubePlacer : MonoBehaviour
             }
             else if (clickNum == 2)
             {
+                RadiusDraw.CreateEmpty();
+                RadiusDraw.CreatePoints();
                 endPos = finalPosition;
                 if (history.Count > 0)
                 {
