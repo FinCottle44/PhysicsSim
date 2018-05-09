@@ -51,7 +51,17 @@ public class CubePlacer : MonoBehaviour
                 PlaceCubeNear(hitInfo.point);
             }
         }
-        KinematicCheck();
+        //if (Input.GetMouseButtonUp(0))
+        //{
+        //    RaycastHit hitInfo;
+        //    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        //    if (Physics.Raycast(ray, out hitInfo))
+        //    {
+        //        PlaceCubeNear(hitInfo.point);
+        //    }
+        //}
+        //KinematicCheck();
     }
 
     private void PlaceCubeNear(Vector3 clickPoint)

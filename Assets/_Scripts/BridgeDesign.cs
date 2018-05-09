@@ -54,7 +54,7 @@ public class BridgeDesign : MonoBehaviour {
         if (isClicking)
         {
             //GUI.DrawTexture(new Rect(Input.mousePosition, new Vector2(100, 100)), crosshair);
-            GUI.DrawTexture(new Rect(Input.mousePosition.x - 25, Screen.height - Input.mousePosition.y - 25, 50, 50), crosshair);
+            GUI.DrawTexture(new Rect(Input.mousePosition.x - 10, Screen.height - Input.mousePosition.y - 10, 25, 25), crosshair);
             //click = false;
         }
     }
