@@ -17,10 +17,10 @@ public class CustomStructureConfig : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.tag == "Structure")
+        if (collision.collider.tag == "Structure" || collision.collider.tag == "StructureGround") ;
         {
             Collider col2 = collision.gameObject.GetComponent<Collider>();
-                Physics.IgnoreCollision(col2, col);
+            Physics.IgnoreCollision(col2, col);
         }
     }
 }

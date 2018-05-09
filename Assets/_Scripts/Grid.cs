@@ -4,6 +4,7 @@ public class Grid : MonoBehaviour
 {
     [SerializeField]
     public camInit camScript;
+    public GameObject parent;
 
     private float size = 1f;
 
@@ -68,6 +69,7 @@ public class Grid : MonoBehaviour
                     sphere.GetComponent<Renderer>().material.color = Color.black;
                 }
                 sphere.GetComponent<Collider>().enabled = false;
+                sphere.transform.SetParent(parent.transform);   
             }
         }
     }

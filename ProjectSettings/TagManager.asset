@@ -9,6 +9,8 @@ TagManager:
   - StopCollide
   - Structure
   - GridSphere
+  - JointCylinder
+  - StructureGround
   layers:
   - Default
   - TransparentFX

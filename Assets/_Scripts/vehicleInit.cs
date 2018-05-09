@@ -37,7 +37,6 @@ public class vehicleInit : MonoBehaviour {
         }
         currentScene = SceneManager.GetActiveScene();
         sceneName = currentScene.name;
-
     }
 
     void FixedUpdate() {
@@ -171,11 +170,13 @@ public class vehicleInit : MonoBehaviour {
         if (vehicleSelect.vehicle.tag == "Jeep")
         {
             vehicleSelect.vehicle.transform.position = new Vector3(0.047593f, 21.37353f, -21.87712f);
+            vehicleSelect.vehicle.transform.position = new Vector3(-0.467f, 0, 0);
             StopPress();
         }
         else if (vehicleSelect.vehicle.tag == "Truck")
         {
             vehicleSelect.vehicle.transform.position = new Vector3(-0.0006133558f, 24.21959f, 23.79094f);
+            vehicleSelect.vehicle.transform.position = new Vector3(0, 270, 0);
             StopPress();
         }
     }
