@@ -641,9 +641,9 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 3.7600002, y: 29.5, z: 14.700001}
-  - {x: 3.8065023, y: 27.015259, z: 20.269176}
-  - {x: 3.86384, y: 24.580158, z: 25.841763}
-  - {x: 3.936502, y: 22.215258, z: 31.419174}
+  - {x: 3.8339784, y: 27.013586, z: 20.268137}
+  - {x: 3.902697, y: 24.577791, z: 25.840292}
+  - {x: 3.963978, y: 22.213585, z: 31.418135}
   - {x: 4.02, y: 19.9, z: 37}
   m_Parameters:
     serializedVersion: 2
@@ -872,9 +872,9 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: -3.7600002, y: 29.5, z: -14.700003}
-  - {x: -3.690266, y: 27.044636, z: -20.28161}
-  - {x: -3.661381, y: 24.621704, z: -25.859348}
-  - {x: -3.690266, y: 22.244635, z: -31.431614}
+  - {x: -3.8108585, y: 27.029852, z: -20.275246}
+  - {x: -3.8319247, y: 24.600796, z: -25.850348}
+  - {x: -3.8108585, y: 22.22985, z: -31.42525}
   - {x: -3.7600002, y: 19.9, z: -37.000008}
   m_Parameters:
     serializedVersion: 2
@@ -1762,9 +1762,9 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: -3.7600002, y: 29.5, z: 14.700002}
-  - {x: -3.798744, y: 27.022802, z: 20.27221}
-  - {x: -3.8147922, y: 24.590826, z: 25.846052}
-  - {x: -3.798744, y: 22.222801, z: 31.422207}
+  - {x: -3.7376432, y: 27.016298, z: 20.26941}
+  - {x: -3.7283826, y: 24.581629, z: 25.842093}
+  - {x: -3.7376432, y: 22.216297, z: 31.419407}
   - {x: -3.7600002, y: 19.9, z: 37}
   m_Parameters:
     serializedVersion: 2
@@ -2430,11 +2430,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dragSpeed: 2
+  lvlSelect: {fileID: 0}
   ddCam: {fileID: 2018269258}
   togMoveCam: {fileID: 2000447176}
+  editing: 0
   speed: 1
   cam1: {fileID: 464687849}
   cam2: {fileID: 1674849539}
+  cam2d: {fileID: 0}
 --- !u!1 &468976439
 GameObject:
   m_ObjectHideFlags: 0
@@ -3356,7 +3359,7 @@ SphereCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 715541118}
-  m_Material: {fileID: 13400000, guid: 08cb9b669bdfb9740bdd697c32dcc26b, type: 2}
+  m_Material: {fileID: 13400000, guid: 0151b31279cbbe64db23577e9163731a, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -3372,7 +3375,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.033838272, y: -0.023199396, z: -0.041772783}
+  m_ConnectedAnchor: {x: -0.033838272, y: -0.023199396, z: -0.04177275}
   m_UseSpring: 0
   m_Spring:
     spring: 10
@@ -3770,10 +3773,10 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: -3.7600002, y: 29.5, z: -14.700003}
-  - {x: -3.763424, y: 26.932985, z: -11.021688}
-  - {x: -3.7340882, y: 24.405226, z: -7.345316}
-  - {x: -3.6584237, y: 21.932985, z: -3.671688}
-  - {x: -3.55, y: 19.5, z: -4.0960657e-10}
+  - {x: -3.6441367, y: 26.938087, z: -11.019921}
+  - {x: -3.5653906, y: 24.412443, z: -7.3428164}
+  - {x: -3.5391364, y: 21.938087, z: -3.6699207}
+  - {x: -3.55, y: 19.5, z: -6.281176e-10}
   m_Parameters:
     serializedVersion: 2
     widthMultiplier: 0.1
@@ -4084,7 +4087,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 10d5972a5440d489f8a54e2d7498188b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -21.877125
+      value: -13.11
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 10d5972a5440d489f8a54e2d7498188b, type: 3}
       propertyPath: m_LocalRotation.x
@@ -4175,6 +4178,7 @@ MonoBehaviour:
   rb: {fileID: 0}
   move: 0
   com: {x: 0, y: 0, z: 0}
+  wheels: []
   inputThrust: {fileID: 413559023}
   inputMass: {fileID: 1950589889}
 --- !u!1 &941432053
@@ -5279,10 +5283,10 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: -3.7600002, y: 29.5, z: 14.700002}
-  - {x: -3.6376388, y: 26.943104, z: 11.016602}
-  - {x: -3.5562012, y: 24.419537, z: 7.3381214}
-  - {x: -3.5326385, y: 21.943104, z: 3.6666002}
-  - {x: -3.55, y: 19.5, z: 0.0000000010385297}
+  - {x: -3.7628102, y: 26.932583, z: 11.021971}
+  - {x: -3.7332203, y: 24.404657, z: 7.3457146}
+  - {x: -3.65781, y: 21.932583, z: 3.6719694}
+  - {x: -3.55, y: 19.5, z: 3.7471468e-10}
   m_Parameters:
     serializedVersion: 2
     widthMultiplier: 0.1
@@ -7314,9 +7318,9 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 3.7600002, y: 29.5, z: -14.700001}
-  - {x: 3.8871047, y: 27.03807, z: -20.278057}
-  - {x: 3.9778292, y: 24.61242, z: -25.854322}
-  - {x: 4.0171046, y: 22.23807, z: -31.428055}
+  - {x: 3.81124, y: 27.014269, z: -20.268696}
+  - {x: 3.8705401, y: 24.578758, z: -25.841082}
+  - {x: 3.9412396, y: 22.214268, z: -31.418694}
   - {x: 4.02, y: 19.9, z: -37}
   m_Parameters:
     serializedVersion: 2
@@ -7991,7 +7995,7 @@ SphereCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1727352222}
-  m_Material: {fileID: 13400000, guid: 08cb9b669bdfb9740bdd697c32dcc26b, type: 2}
+  m_Material: {fileID: 13400000, guid: 0151b31279cbbe64db23577e9163731a, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -8007,7 +8011,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.03401184, y: -0.023199396, z: -0.041772783}
+  m_ConnectedAnchor: {x: 0.03401184, y: -0.023199396, z: -0.04177275}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -8330,8 +8334,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8471de2f775b72f4497b1b6cafde4b3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 0
-  sceneName: 
+  canvasDefault: {fileID: 0}
+  canvasBD: {fileID: 0}
 --- !u!114 &1739415371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8605,10 +8609,10 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 3.7600002, y: 29.5, z: -14.700003}
-  - {x: 3.668817, y: 26.923449, z: -11.029528}
-  - {x: 3.600294, y: 24.39174, z: -7.3564014}
-  - {x: 3.5638168, y: 21.923449, z: -3.6795268}
-  - {x: 3.55, y: 19.5, z: 5.5952926e-10}
+  - {x: 3.7484324, y: 26.924448, z: -11.02771}
+  - {x: 3.712887, y: 24.393152, z: -7.3538322}
+  - {x: 3.6434321, y: 21.924448, z: -3.6777098}
+  - {x: 3.55, y: 19.5, z: 3.3489728e-10}
   m_Parameters:
     serializedVersion: 2
     widthMultiplier: 0.1
@@ -9300,6 +9304,11 @@ MonoBehaviour:
   ocean: {fileID: 623150880}
   road: {fileID: 739552424}
   hjDestroyed: 0
+  RopeRoad: {fileID: 0}
+  RopeGround: {fileID: 0}
+  distance: 10
+  GroundL: {fileID: 0}
+  passByFinish: {fileID: 0}
 --- !u!1001 &1949891213
 Prefab:
   m_ObjectHideFlags: 0
@@ -9601,7 +9610,7 @@ SphereCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1990272586}
-  m_Material: {fileID: 13400000, guid: 08cb9b669bdfb9740bdd697c32dcc26b, type: 2}
+  m_Material: {fileID: 13400000, guid: 0151b31279cbbe64db23577e9163731a, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -9617,7 +9626,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.030549776, y: -0.023199396, z: 0.039707538}
+  m_ConnectedAnchor: {x: 0.030549776, y: -0.023199394, z: 0.03970757}
   m_UseSpring: 0
   m_Spring:
     spring: 10
@@ -9712,9 +9721,9 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: -3.7600002, y: 29.5, z: -14.700003}
-  - {x: -3.6473691, y: 26.90917, z: -13.530073}
-  - {x: -3.5684977, y: 24.358366, z: -12.361567}
-  - {x: -3.537369, y: 21.864168, z: -11.195072}
+  - {x: -3.6544874, y: 26.906956, z: -13.534525}
+  - {x: -3.5785644, y: 24.355234, z: -12.367863}
+  - {x: -3.5444872, y: 21.861954, z: -11.199524}
   - {x: -3.54, y: 19.41, z: -10.030001}
   m_Parameters:
     serializedVersion: 2
@@ -10286,11 +10295,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dragSpeed: 2
+  lvlSelect: {fileID: 0}
   ddCam: {fileID: 2018269258}
   togMoveCam: {fileID: 0}
+  editing: 0
   speed: 1
   cam1: {fileID: 464687849}
   cam2: {fileID: 1674849539}
+  cam2d: {fileID: 0}
 --- !u!1 &2018272715
 GameObject:
   m_ObjectHideFlags: 0
@@ -10528,7 +10540,7 @@ SphereCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2093060279}
-  m_Material: {fileID: 13400000, guid: 08cb9b669bdfb9740bdd697c32dcc26b, type: 2}
+  m_Material: {fileID: 13400000, guid: 0151b31279cbbe64db23577e9163731a, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -10544,7 +10556,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.0328743, y: -0.023199396, z: 0.039707538}
+  m_ConnectedAnchor: {x: -0.0328743, y: -0.023199394, z: 0.03970757}
   m_UseSpring: 0
   m_Spring:
     spring: 10
@@ -10700,10 +10712,10 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 3.7600002, y: 29.5, z: 14.700001}
-  - {x: 3.6667488, y: 26.924406, z: 11.028904}
-  - {x: 3.597369, y: 24.393095, z: 7.355521}
-  - {x: 3.5617485, y: 21.924406, z: 3.6789038}
-  - {x: 3.55, y: 19.5, z: -4.82628e-10}
+  - {x: 3.6795309, y: 26.91928, z: 11.032209}
+  - {x: 3.6154456, y: 24.385843, z: 7.3601956}
+  - {x: 3.5745306, y: 21.91928, z: 3.6822095}
+  - {x: 3.55, y: 19.5, z: -8.913043e-10}
   m_Parameters:
     serializedVersion: 2
     widthMultiplier: 0.1

@@ -9,6 +9,7 @@ public class vehicleInit : MonoBehaviour {
     public Rigidbody rb;
     public bool move;
     public Vector3 com;
+    public Rigidbody[] wheels;
 
     float mass;
     float thrustMultiplier;
@@ -37,6 +38,7 @@ public class vehicleInit : MonoBehaviour {
         }
         currentScene = SceneManager.GetActiveScene();
         sceneName = currentScene.name;
+        wheelCheck();
     }
 
     void FixedUpdate() {
@@ -73,21 +75,28 @@ public class vehicleInit : MonoBehaviour {
 
     public void vehMove()
     {
-        if (vehicleSelect.vehicle == vehicleSelect.jeep)
-        {
-            float force = mass * (velocityRequired / Time.fixedDeltaTime);
-            Vector3 f = force * transform.forward;
+        //if (vehicleSelect.vehicle == vehicleSelect.jeep)
+        //{
+        //    float force = mass * (velocityRequired / Time.fixedDeltaTime);
+        //    Vector3 f = force * transform.forward;
 
-            rb.AddForce(f, ForceMode.Force);
-            //Debug.Log("jeep");
-        }
-        else if (vehicleSelect.vehicle == vehicleSelect.truck)
-        {
-            //Debug.Log("Truck");
-            float force = mass * (velocityRequired / Time.fixedDeltaTime);
-            Vector3 f = force * -(transform.right); //Truck is weirdly rotated, this acts as "forward" when it is really left, see "if tag == jeep statement".
+        //    rb.AddForce(f, ForceMode.Force);
+        //    //Debug.Log("jeep");
+        //}
+        //else if (vehicleSelect.vehicle == vehicleSelect.truck)
+        //{
+        //    //Debug.Log("Truck");
+        //    float force = mass * (velocityRequired / Time.fixedDeltaTime);
+        //    Vector3 f = force * -(transform.right); //Truck is weirdly rotated, this acts as "forward" when it is really left, see "if tag == jeep statement".
 
-            rb.AddForce(f, ForceMode.Force);
+        //    rb.AddForce(f, ForceMode.Force);
+        //}
+
+        //new n improved
+
+        if (move)
+        {
+
         }
     }
 
@@ -185,5 +194,28 @@ public class vehicleInit : MonoBehaviour {
     {
         //StopPress();
         //Debug.Log("stopped");
+    }
+
+    void wheelCheck()
+    {
+        if (vehicleSelect.vehicle == vehicleSelect.jeep)
+        {
+            wheels = vehicleSelect.jeep.GetComponentsInChildren<Rigidbody>();
+            //Debug.Log(wheels.Length);
+
+            for (int i = 0; i < wheels.Length; i++)
+            {
+                if (wheels[i].name.Contains("wheel"))
+                {
+                    Debug.Log(wheels[i].gameObject.name + " " + i);
+                    HingeJoint hj = wheels[i].GetComponent<HingeJoint>();
+                    hj.useMotor = true;
+                    JointMotor jm = hj.motor;
+                    jm.targetVelocity = 300;
+                    jm.force = 500;
+                    Debug.Log("Should be moving");
+                }
+            }
+        }
     }
 }

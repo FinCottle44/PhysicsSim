@@ -4,12 +4,12 @@ using System.Collections;
 [RequireComponent(typeof(LineRenderer))]
 public class RadiusDraw : MonoBehaviour
 {
-    [Range(0, 40)]
-    public int segments = 40;
-    [Range(0, 6)]
-    public float xradius = 6;
-    [Range(0, 6)]
-    public float yradius = 6;
+    [Range(0, 60)]
+    public int segments = 60;
+    [Range(0, 5)]
+    public float xradius = 5;
+    [Range(0, 5)]
+    public float yradius = 5;
     LineRenderer line;
 
     public GameObject empty;
@@ -30,6 +30,7 @@ public class RadiusDraw : MonoBehaviour
         {
             x = Mathf.Sin(Mathf.Deg2Rad * angle) * xradius;
             z = Mathf.Cos(Mathf.Deg2Rad * angle) * yradius;
+
 
             line.SetPosition(i, new Vector3(0, x, z));
 
