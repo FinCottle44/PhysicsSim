@@ -3435,6 +3435,7 @@ MonoBehaviour:
   rb: {fileID: 0}
   move: 0
   com: {x: 0, y: 0, z: 0}
+  wheels: []
   inputThrust: {fileID: 741253764}
   inputMass: {fileID: 401817174}
 --- !u!1 &949612749
@@ -5326,9 +5327,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01c6afb1060db2e4c90a28484ebb5052, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  segments: 50
-  xradius: 5
-  yradius: 5
+  segments: 360
+  xradius: 6
+  yradius: 6
   empty: {fileID: 0}
   cubeplacer: {fileID: 378385504}
   grid: {fileID: 1524621394}
@@ -9008,7 +9009,7 @@ GameObject:
   - component: {fileID: 1989693694}
   - component: {fileID: 1989693693}
   m_Layer: 0
-  m_Name: Plane
+  m_Name: ClickBackboard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9077,7 +9078,7 @@ Transform:
   m_GameObject: {fileID: 1989693692}
   m_LocalRotation: {x: 0.7071068, y: 0.7071068, z: -0, w: 0}
   m_LocalPosition: {x: -2.5, y: 22.1, z: 0}
-  m_LocalScale: {x: 3, y: 1, z: 3}
+  m_LocalScale: {x: 5, y: 1, z: 4}
   m_Children: []
   m_Father: {fileID: 2094777685}
   m_RootOrder: 3

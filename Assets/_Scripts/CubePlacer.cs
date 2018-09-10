@@ -83,7 +83,7 @@ public class CubePlacer : MonoBehaviour
                 {
                     history.Add(startPos);
                     cubeClickBack = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
-                    cubeClickBack.transform.position = new Vector3(-2.7f, finalPosition.y, finalPosition.z);
+                    cubeClickBack.transform.position = new Vector3(-2.8f, finalPosition.y, finalPosition.z);
                     cubeClickBack.transform.Rotate(0, 0, 90);
                     cubeClickBack.transform.localScale = new Vector3(cubeClickScale, cubeClickScaleY, cubeClickScale);
                     cubeClickBack.GetComponent<Renderer>().material.color = Color.green;
@@ -93,7 +93,7 @@ public class CubePlacer : MonoBehaviour
                     GroundCheck(startPos, cubeClickBack);
 
                     cubeClickFront = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
-                    cubeClickFront.transform.position = new Vector3(2.7f, finalPosition.y, finalPosition.z);
+                    cubeClickFront.transform.position = new Vector3(2.8f, finalPosition.y, finalPosition.z);
                     cubeClickFront.transform.Rotate(0, 0, 90);
                     cubeClickFront.transform.localScale = new Vector3(cubeClickScale, cubeClickScaleY, cubeClickScale);
                     cubeClickFront.GetComponent<Renderer>().material.color = Color.green;
@@ -119,7 +119,7 @@ public class CubePlacer : MonoBehaviour
                     if (overlap == false)
                     {
                         cubeClickBack = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
-                        cubeClickBack.transform.position = new Vector3(-2.7f, finalPosition.y, finalPosition.z);
+                        cubeClickBack.transform.position = new Vector3(-2.8f, finalPosition.y, finalPosition.z);
                         cubeClickBack.transform.Rotate(0, 0, 90);
                         cubeClickBack.transform.localScale = new Vector3(cubeClickScale, cubeClickScaleY, cubeClickScale);
                         cubeClickBack.GetComponent<Renderer>().material.color = Color.blue;
@@ -129,7 +129,7 @@ public class CubePlacer : MonoBehaviour
                         GroundCheck(endPos, cubeClickBack);
 
                         cubeClickFront = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
-                        cubeClickFront.transform.position = new Vector3(2.7f, finalPosition.y, finalPosition.z);
+                        cubeClickFront.transform.position = new Vector3(2.8f, finalPosition.y, finalPosition.z);
                         cubeClickFront.transform.Rotate(0, 0, 90);
                         cubeClickFront.transform.localScale = new Vector3(cubeClickScale, cubeClickScaleY, cubeClickScale);
                         cubeClickFront.GetComponent<Renderer>().material.color = Color.blue;
@@ -170,7 +170,7 @@ public class CubePlacer : MonoBehaviour
                         GameObject go = poleBack;
 
                         go.name = "steelBack";
-                        go.transform.position = new Vector3(-2.7f, mid.y, mid.z);
+                        go.transform.position = new Vector3(-2.8f, mid.y, mid.z);
                         go.transform.localScale = new Vector3(0.5f, 0.5f, root + 0.5f);
                         go.transform.Rotate(new Vector3(-(float)result, 0, 0));
                         go.tag = "Structure";
@@ -184,7 +184,7 @@ public class CubePlacer : MonoBehaviour
                         go = poleFront; //(GameObject go = blahblablah)
 
                         go.name = "steelFront";
-                        go.transform.position = new Vector3(2.7f, mid.y, mid.z);
+                        go.transform.position = new Vector3(2.8f, mid.y, mid.z);
                         go.transform.localScale = new Vector3(0.5f, 0.5f, root + 0.5f);
                         go.transform.Rotate(new Vector3(-(float)result, 0, 0));
                         go.tag = "Structure";
@@ -312,8 +312,9 @@ public class CubePlacer : MonoBehaviour
         pole.transform.position = new Vector3(0, position.y, position.z); //has to be 0 on x axis
         pole.tag = "Structure";
         pole.name = "Horizontal Pole";
+        pole.AddComponent(typeof(Rigidbody));
 
-        Collider[] proxmityBlocks = Physics.OverlapSphere(pole.transform.position, pole.transform.localScale.y);
+        Collider[] proxmityBlocks = Physics.OverlapSphere(pole.transform.position, pole.transform.localScale.y + 1);
 
         for (int k = 0; k < proxmityBlocks.Length; k++)
         {
@@ -388,7 +389,10 @@ public class CubePlacer : MonoBehaviour
             for (int i = 0; i < gos.Length; i++)
             {
                 Rigidbody rb = gos[i].GetComponent<Rigidbody>();
-                rb.isKinematic = false;
+                if (rb.gameObject.name != "Pivot")
+                {
+                    rb.isKinematic = false;
+                }
             }
         }
     }
