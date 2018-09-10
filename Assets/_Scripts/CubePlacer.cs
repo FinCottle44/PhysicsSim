@@ -389,7 +389,7 @@ public class CubePlacer : MonoBehaviour
             for (int i = 0; i < gos.Length; i++)
             {
                 Rigidbody rb = gos[i].GetComponent<Rigidbody>();
-                if (rb.gameObject.name != "Pivot")
+                if (gos[i].name != "Pivot")
                 {
                     rb.isKinematic = false;
                 }
