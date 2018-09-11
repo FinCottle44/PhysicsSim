@@ -88,6 +88,7 @@ public class CubePlacer : MonoBehaviour
                     cubeClickBack.transform.localScale = new Vector3(cubeClickScale, cubeClickScaleY, cubeClickScale);
                     cubeClickBack.GetComponent<Renderer>().material.color = Color.green;
                     cubeClickBack.AddComponent(typeof(CustomStructureConfig));
+                    cubeClickBack.GetComponent<CapsuleCollider>().isTrigger = true;
                     cubeClickBack.tag = "Structure";
                     cubeClickBack.name = "Pivot";
                     GroundCheck(startPos, cubeClickBack);
@@ -98,6 +99,7 @@ public class CubePlacer : MonoBehaviour
                     cubeClickFront.transform.localScale = new Vector3(cubeClickScale, cubeClickScaleY, cubeClickScale);
                     cubeClickFront.GetComponent<Renderer>().material.color = Color.green;
                     cubeClickFront.AddComponent(typeof(CustomStructureConfig));
+                    cubeClickFront.GetComponent<CapsuleCollider>().isTrigger = true;
                     cubeClickFront.tag = "Structure";
                     cubeClickFront.name = "Pivot";
                     GroundCheck(startPos, cubeClickFront);
@@ -124,6 +126,7 @@ public class CubePlacer : MonoBehaviour
                         cubeClickBack.transform.localScale = new Vector3(cubeClickScale, cubeClickScaleY, cubeClickScale);
                         cubeClickBack.GetComponent<Renderer>().material.color = Color.blue;
                         cubeClickBack.AddComponent(typeof(CustomStructureConfig));
+                        cubeClickBack.GetComponent<CapsuleCollider>().isTrigger = true;
                         cubeClickBack.tag = "Structure";
                         cubeClickBack.name = "Pivot";
                         GroundCheck(endPos, cubeClickBack);
@@ -134,6 +137,7 @@ public class CubePlacer : MonoBehaviour
                         cubeClickFront.transform.localScale = new Vector3(cubeClickScale, cubeClickScaleY, cubeClickScale);
                         cubeClickFront.GetComponent<Renderer>().material.color = Color.blue;
                         cubeClickFront.AddComponent(typeof(CustomStructureConfig));
+                        cubeClickFront.GetComponent<CapsuleCollider>().isTrigger = true;
                         cubeClickFront.tag = "Structure";
                         cubeClickFront.name = "Pivot";
                         GroundCheck(endPos, cubeClickFront);
@@ -308,7 +312,7 @@ public class CubePlacer : MonoBehaviour
     {
         GameObject pole = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
         pole.transform.Rotate(0, 0, 90);
-        pole.transform.localScale = new Vector3(0.5f, 2.4f, 0.5f);
+        pole.transform.localScale = new Vector3(0.5f, 2.5f, 0.5f);
         pole.transform.position = new Vector3(0, position.y, position.z); //has to be 0 on x axis
         pole.tag = "Structure";
         pole.name = "Horizontal Pole";
@@ -352,6 +356,7 @@ public class CubePlacer : MonoBehaviour
                 HingeJoint hj = pivot.AddComponent<HingeJoint>();
                 hj.connectedBody = block.GetComponent<Rigidbody>();
                 hj.axis = new Vector3(0, 1, 0);
+                hj.useLimits = true;
             }
         }
         
