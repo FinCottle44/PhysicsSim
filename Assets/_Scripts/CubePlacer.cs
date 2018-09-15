@@ -89,6 +89,7 @@ public class CubePlacer : MonoBehaviour
                     cubeClickBack.GetComponent<Renderer>().material.color = Color.green;
                     cubeClickBack.AddComponent(typeof(CustomStructureConfig));
                     cubeClickBack.GetComponent<CapsuleCollider>().isTrigger = true;
+                    //cubeClickBack.GetComponent<Rigidbody>().mass = 75;
                     cubeClickBack.tag = "Structure";
                     cubeClickBack.name = "Pivot";
                     GroundCheck(startPos, cubeClickBack);
@@ -100,6 +101,7 @@ public class CubePlacer : MonoBehaviour
                     cubeClickFront.GetComponent<Renderer>().material.color = Color.green;
                     cubeClickFront.AddComponent(typeof(CustomStructureConfig));
                     cubeClickFront.GetComponent<CapsuleCollider>().isTrigger = true;
+                    //cubeClickFront.GetComponent<Rigidbody>().mass = 75;
                     cubeClickFront.tag = "Structure";
                     cubeClickFront.name = "Pivot";
                     GroundCheck(startPos, cubeClickFront);
@@ -127,6 +129,7 @@ public class CubePlacer : MonoBehaviour
                         cubeClickBack.GetComponent<Renderer>().material.color = Color.blue;
                         cubeClickBack.AddComponent(typeof(CustomStructureConfig));
                         cubeClickBack.GetComponent<CapsuleCollider>().isTrigger = true;
+                        //cubeClickBack.GetComponent<Rigidbody>().mass = 75; 
                         cubeClickBack.tag = "Structure";
                         cubeClickBack.name = "Pivot";
                         GroundCheck(endPos, cubeClickBack);
@@ -138,6 +141,7 @@ public class CubePlacer : MonoBehaviour
                         cubeClickFront.GetComponent<Renderer>().material.color = Color.blue;
                         cubeClickFront.AddComponent(typeof(CustomStructureConfig));
                         cubeClickFront.GetComponent<CapsuleCollider>().isTrigger = true;
+                        //cubeClickFront.GetComponent<Rigidbody>().mass = 75;
                         cubeClickFront.tag = "Structure";
                         cubeClickFront.name = "Pivot";
                         GroundCheck(endPos, cubeClickFront);
@@ -180,8 +184,14 @@ public class CubePlacer : MonoBehaviour
                         go.tag = "Structure";
                         go.AddComponent(typeof(Rigidbody));
                         go.AddComponent(typeof(CustomStructureConfig));
+                        BoxCollider boxco = go.GetComponent<BoxCollider>();
+                        boxco.size = new Vector3(1, 1, 0.95f);
                         Rigidbody rb = go.GetComponent<Rigidbody>();
                         rb.isKinematic = true;
+
+                        rb.mass = 100;
+                        rb.drag = 10;
+
                         FindNearPivots(go.transform.position, go.transform.localScale, go);
 
                         poleFront = GameObject.CreatePrimitive(PrimitiveType.Cube);
@@ -194,8 +204,14 @@ public class CubePlacer : MonoBehaviour
                         go.tag = "Structure";
                         go.AddComponent(typeof(Rigidbody));
                         go.AddComponent(typeof(CustomStructureConfig));
+                        boxco = go.GetComponent<BoxCollider>();
+                        boxco.size = new Vector3(1, 1, 0.95f);
                         rb = go.GetComponent<Rigidbody>();
                         rb.isKinematic = true;
+
+                        rb.mass = 100;
+                        rb.drag = 10;
+                    
                         FindNearPivots(go.transform.position, go.transform.localScale, go);
                     }
                     else if (materialDrop.value == 1) //road
@@ -213,6 +229,10 @@ public class CubePlacer : MonoBehaviour
                         go.AddComponent(typeof(CustomStructureConfig));
                         Rigidbody rb = go.GetComponent<Rigidbody>();
                         rb.isKinematic = true;
+
+                        rb.mass = 100;
+                        rb.drag = 10;
+
                         FindNearPivots(go.transform.position, go.transform.localScale, go);
                     }
                     clickNum = 1;
@@ -317,6 +337,7 @@ public class CubePlacer : MonoBehaviour
         pole.tag = "Structure";
         pole.name = "Horizontal Pole";
         pole.AddComponent(typeof(Rigidbody));
+        pole.GetComponent<Rigidbody>().mass = 75;
 
         Collider[] proxmityBlocks = Physics.OverlapSphere(pole.transform.position, pole.transform.localScale.y + 1);
 
@@ -334,7 +355,6 @@ public class CubePlacer : MonoBehaviour
 
     void FindNearPivots(Vector3 pos, Vector3 scale, GameObject block)
     {
-        //GameObject[] structure = GameObject.FindGameObjectsWithTag("Structure");
         Collider[] pivots = Physics.OverlapBox(pos, scale);
         if (block.name == "Road")
         {
@@ -351,15 +371,14 @@ public class CubePlacer : MonoBehaviour
             if (pivots[i].name == "Pivot")
             {
                 GameObject pivot = pivots[i].gameObject;
-                //FixedJoint fj = pivot.AddComponent<FixedJoint>();
-                //fj.connectedBody = block.GetComponent<Rigidbody>();
                 HingeJoint hj = pivot.AddComponent<HingeJoint>();
                 hj.connectedBody = block.GetComponent<Rigidbody>();
                 hj.axis = new Vector3(0, 1, 0);
                 hj.useLimits = true;
+                pivot.GetComponent<Rigidbody>().mass = 75;
             }
         }
-        
+
     }
 
     void GroundCheck(Vector3 pos, GameObject pivot)

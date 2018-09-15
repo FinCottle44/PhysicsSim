@@ -38,16 +38,17 @@ public class camInit : MonoBehaviour
 	{
 		currentScene = SceneManager.GetActiveScene();
 		sceneName = currentScene.name;
-		SelectCam ();
+		SelectCam();
 		//editing = true;
 	}
 
     void Pan()
     {
-        if (togMoveCam.isOn == true)
+        if (togMoveCam.isOn)
         {
-            if (Input.GetMouseButton(0))
+            if (Input.GetMouseButton(1))
             {
+                Debug.Log(Input.GetAxis("Mouse Y"));
                 transform.Rotate(new Vector3(Input.GetAxis("Mouse Y") * speed, -Input.GetAxis("Mouse X") * speed, 0));
                 X = transform.rotation.eulerAngles.x;
                 Y = transform.rotation.eulerAngles.y;
@@ -73,6 +74,7 @@ public class camInit : MonoBehaviour
         ddCamOption = ddCam.options[ddCamValue].text;
         
 		if (sceneName == "BridgeDesign" && editing == true) {
+            Debug.Log("editing");
 			cam1.enabled = false;
 			cam2.enabled = false;
             cam2d.enabled = true;
